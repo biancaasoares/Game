@@ -1,21 +1,38 @@
 package br.senai.sp.jandira.Model;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Register {
 
-    /** Instancia Scanner */
+    int validaPrint = 0;
+
+    /**
+     * Instancia Scanner
+     */
     Scanner teclado = new Scanner(System.in);
 
-    /** Instancia player */
+    /**
+     * Instancia player
+     */
     Player player = new Player();
 
-    /** Instancia Enemy */
+    /**
+     * Instancia Enemy
+     */
     Enemy enemy = new Enemy();
 
+    /**
+     * Instancia Output
+     */
+    Output output = new Output();
+
     public void BothRegister() {
-     PlayerRegister();
-     EnemyRegister();
+        validaPrint = 1;
+        PlayerRegister();
+        EnemyRegister();
+        output.Print(player);
+        output.Print2(enemy);
 
     }
 
@@ -28,6 +45,11 @@ public class Register {
         player.skin = teclado.nextLine();
         System.out.println("-------- Player Cadastrado com Sucesso!! ----------");
 
+        if (validaPrint != 1) {
+            /** Printa as informações cadastradas */
+            output.Print(player);
+
+        }
     }
 
     public void EnemyRegister() {
@@ -39,18 +61,22 @@ public class Register {
         enemy.skin = teclado.nextLine();
         System.out.println("-------- Enemy Cadastrado com Sucesso!! ----------");
 
+        if (validaPrint != 1) {
+            /** Printa as informações cadastradas */
+            output.Print2(enemy);
+        }
     }
 
-    public void RegisterDecision(){
+    public void RegisterDecision() {
 
         String decision;
 
         System.out.println("Seja Bem Vindo !!!");
-        System.out.println(" Deseja Cadastrar [ 1- Player 2- Enemy  3- Ambos");
+        System.out.println(" Deseja Cadastrar [ 1- Player 2- Enemy  3- Ambos]");
         decision = teclado.nextLine();
 
 
-        switch(decision){
+        switch (decision.toUpperCase()) {
             case "Player":
                 PlayerRegister();
                 break;
@@ -59,14 +85,19 @@ public class Register {
                 break;
             case "Ambos":
                 BothRegister();
-
-            default:
-                System.out.println("Digite uma opção válida");
+                break;
 
         }
+        System.out.println("Deseja retornar ao cadastro [1-Sim 2- Não]: ");
+        int continuar = teclado.nextInt();
 
+        if (continuar == 1) {
+            RegisterDecision();
         }
 
-        }
+
+    }
+
+}
 
 
