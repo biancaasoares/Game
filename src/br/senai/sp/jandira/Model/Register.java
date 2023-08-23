@@ -36,7 +36,7 @@ public class Register {
 
     }
 
-    public void PlayerRegister() {
+    public Player PlayerRegister() {
         /** Coleta de dados do Player-1 */
         System.out.println("--------------- Cadastro Player -------------");
         System.out.println("Qual é o seu nome: ");
@@ -50,9 +50,11 @@ public class Register {
             output.Print(player);
 
         }
+
+        return player;
     }
 
-    public void EnemyRegister() {
+    public Enemy EnemyRegister() {
         /** Coleta de dados do Enemy-1 */
         System.out.println("--------------- Cadastro Enemy -------------");
         System.out.println("Qual é o seu nome: ");
@@ -65,6 +67,8 @@ public class Register {
             /** Printa as informações cadastradas */
             output.Print2(enemy);
         }
+
+        return enemy;
     }
 
     public void RegisterDecision() {
@@ -88,7 +92,7 @@ public class Register {
                 break;
 
         }
-        System.out.println("Deseja retornar ao cadastro [1-Sim 2- Não]: ");
+        System.out.println("Deseja retornar ao cadastro [1-Sim  2-Não]: ");
         int continuar = teclado.nextInt();
 
         if (continuar == 1) {
